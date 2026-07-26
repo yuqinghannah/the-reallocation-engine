@@ -1,0 +1,45 @@
+# search/profile.yml
+# Personal search profile — attested facts, not aspirations.
+# Last reviewed: 2026-07-26
+
+target_role:
+  title: "Product Designer / UX Designer"
+  target_industries:
+    - "B2B SaaS"
+    - "Fintech"
+    - "PropertyTech"
+  note: "Specific enough to drive fit scorer — dual-title because actively targeting both Product Designer and UX Designer postings, not open to 'any design role.'"
+
+visa:
+  visa_type: "F-1 OPT"
+  opt_status: "applied_pending_approval"
+  opt_start_date: "2026-09-28"
+  opt_end_date: "2027-09-28"
+  ead_card_status: "applied_not_yet_received"
+  unemployment_days_used: 0
+  buffer_target_days: 80  # per course recommendation: stay 80 days below the 90-day ceiling
+
+  stem_opt:
+    stem_eligible: true
+    stem_eligible_confirmed_by_dso: true
+    stem_opt_extension_status: "not_yet_applicable"
+    note: "STEM eligibility confirmed with DSO. STEM OPT is the 24-month extension applied for near the end of the first OPT year — not currently active or applied for, since first-year OPT has not yet started (still pending USCIS approval). Do not treat as an active STEM OPT gate yet."
+
+geography:
+  target_locations:
+    - "California (statewide)"
+  remote_acceptable: true
+  hard_constraints: "none stated"
+
+industry_preferences:
+  target_sectors:
+    - "B2B SaaS"
+    - "Fintech"
+    - "PropertyTech"
+  company_size_range: "no preference / unrestricted"
+  hard_exclusions: []
+
+sponsorship:
+  requires_sponsorship: true
+  sponsorship_gate: "hard_gate"
+  note: "Companies with no H-1B sponsorship history are skip-regardless, independent of fit score."

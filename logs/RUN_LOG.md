@@ -150,3 +150,22 @@ private emails, or sensitive application notes.
 - **Rebuilt:** `node scripts/build-instructions.mjs --promote` → `AGENTS.md` + `CLAUDE.md` regenerated; `CLAUDE.md` now imports `@SNICKERDOODLE.md`.
 - **Untouched:** `data/` CSVs (real company names containing "mycroft") and prior RUN_LOG history (append-only).
 - **Result:** conformance + doctor green; no stale `MYCROFT.md` outside data/history.
+### 2026-07-26
+
+**What was built:** search/resume.json, search/profile.yml, search/gaps.md (search/private-notes.md created and gitignored, not committed)
+
+**Three attestation errors caught in resume.json:**
+1. MSIS degree status was ambiguously auto-inferred as "in_progress_or_expected" — corrected to explicit "expected graduation 2026-08" based on my actual program timeline.
+2. The AI drafted a "summary" field using my personal positioning statement ("Big-picture, research-driven product designer transitioning from spatial design to digital product design...") as if it were a factual summary of my experience. It's actually branding language I wrote myself, not a verified fact — relabeled as "positioning_statement" and separated from factual fields.
+3. Ark7's company_type field incorrectly included "iOS" as a company category. iOS is a platform, not an industry/company type — corrected to "Fintech / PropertyTech."
+
+**Top gap from gaps.md:** Quantified business-impact metrics in case study bullets — my resume bullets describe what I did but not measurable outcomes, which real B2B SaaS postings expect. Unlike a generic "I'll improve this later" plan, I actually have a concrete path: reach out to my former MOKAHire and Ark7 contacts for real usage/engagement data tied to my redesigns, and only add a number to resume.json if someone there can confirm it.
+
+**Row killed and why:** "Mobile app design experience" — this was based on a wrong premise. The AI generated it from generic Built In listings and assumed my background was desktop/web-only. In reality, all of my actual internship experience (Ark7's iOS app, MOKAHire's product) is already mobile-app-based. There was no real gap here; it was an invented demand signal, not something grounded in my actual situation.
+
+**Field corrected in profile.yml:** opt_status — the AI's first draft assumed "approved_pending_start," but my actual status is "applied_pending_approval" (OPT application submitted, still awaiting USCIS approval, EAD card not yet received).
+
+**Verification check:**
+- [x] resume.json: Initial draft had real errors (see above) — all traceable back to my actual experience once corrected; nothing in the current version is a claim I couldn't defend in an interview.
+- [x] profile.yml: The visa section reflects my actual documented status, not hoped-for timeline — STEM eligibility was confirmed with my DSO before being marked true, and OPT status is marked as pending approval rather than approved, since the EAD card hasn't arrived yet.
+- [x] gaps.md: One evidence-based gap ("Mobile app design experience") was an invented demand signal from the AI's training data, not something grounded in my actual target industry — caught and killed with a specific reason, not a vague "not relevant to me."

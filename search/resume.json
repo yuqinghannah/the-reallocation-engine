@@ -1,0 +1,105 @@
+{
+  "attested": true,
+  "attested_date": "2026-07-26",
+  "attestation_note": "Three errors corrected: (1) MSIS degree status was ambiguously inferred as 'in_progress_or_expected' — corrected to explicit 'expected graduation 2026-08'; (2) the AI-drafted 'summary' field was actually my personal positioning statement, not a factual summary — relabeled as 'positioning_statement' and flagged as self-authored branding rather than verified experience; (3) Ark7's company_type incorrectly included 'iOS' as a company category — iOS is a platform, not a company type, corrected to 'Fintech / PropertyTech'.",
+  "personal": {
+    "name": "Hannah Yuqing Huang",
+    "title_line": "Product Designer | B2B SaaS · AI · Fintech · PropertyTech",
+    "location": "San Jose, CA",
+    "phone": "(206) 330-7183",
+    "portfolio_url": "https://hannahhuang.framer.website/",
+    "linkedin_url": "https://www.linkedin.com/in/hannah-yuqing-huang-75826a254/"
+  },
+  "positioning_statement": {
+    "text": "Big-picture, research-driven product designer transitioning from spatial design to digital product design, bringing systems thinking, curiosity, and aesthetic sensibility to B2B SaaS, fintech, and propertytech products.",
+    "note": "This is a self-authored branding/positioning line, not a verified fact extracted from experience records. Kept separate from factual fields intentionally."
+  },
+  "experience": [
+    {
+      "title": "Product Designer",
+      "company": "IpserLab",
+      "company_type": "B2B E-commerce",
+      "location": "San Francisco Bay Area, CA (Remote)",
+      "start_date": "2026-01",
+      "end_date": "2026-05",
+      "bullets": [
+        "Designed end-to-end UX for an order-management and supplier-communication platform supporting 1,000+ concurrent users, covering search, order tracking, notification workflows, and metadata-driven information organization.",
+        "Improved information findability by designing search and filtering experiences around user intent, order attributes, supplier metadata, and status-based workflows, streamlining order lookup and task completion for high-volume operations.",
+        "Partnered with engineers to define interaction logic, edge cases, empty states, loading states, and error handling for high-volume search and order-management scenarios."
+      ]
+    },
+    {
+      "title": "UX Design Intern",
+      "company": "MOKAHire",
+      "company_type": "B2B SaaS, AI Hiring",
+      "location": "Singapore (Remote)",
+      "start_date": "2024-11",
+      "end_date": "2025-05",
+      "bullets": [
+        "Redesigned core flows of a B2B AI-powered hiring platform serving 1,500+ enterprise clients — including an AI agent, candidate screening, interview-scheduling coordination, and AI-assistance flows.",
+        "Led competitive analysis and stakeholder interviews using research methods to inform concept ideation and solution exploration.",
+        "Translated insights into wireframes and iterated based on cross-functional team feedback; conducted rapid prototyping using the design system.",
+        "Collaborated with PMs and engineers to ensure UX strategy met business goals and maintained technical feasibility.",
+        "Owned content design and usability testing; partnered with PMs to define success metrics and leverage analytics.",
+        "Presented and articulated design solutions with developers to influence UX strategy and negotiate feasibility assessments."
+      ]
+    },
+    {
+      "title": "UX Design Intern",
+      "company": "Ark7",
+      "company_type": "Fintech / PropertyTech",
+      "location": "San Francisco Bay Area, CA (Remote)",
+      "start_date": "2023-10",
+      "end_date": "2023-12",
+      "bullets": [
+        "Redesigned key flows of a real-estate investment iOS app with 220K+ active investors, including community and webinar-registration features.",
+        "Led UX research — audits, user interviews, and surveys — synthesizing findings into pain points, journey maps, and personas.",
+        "Created wireframes based on design principles and UX best practices, defining product roadmap in collaboration with PMs.",
+        "Repeatedly prototyped based on the design system; created high-fidelity, accessible design specs following iOS platform guidelines.",
+        "Facilitated workshops and delivered UI specs with redlines and annotations under Agile process.",
+        "Influenced design direction using business metrics and KPIs."
+      ]
+    }
+  ],
+  "academic_projects": [
+    {
+      "title": "Local Carpooling Application",
+      "role": "Team Member",
+      "institution": "Northeastern University, Boston, MA",
+      "start_date": "2025-09",
+      "end_date": "2025-12",
+      "bullets": [
+        "Designed and built a Java Swing desktop application to address inconvenient travel for international students, implementing UI interaction and database management."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science in Information Systems",
+      "institution": "Northeastern University, Boston, MA",
+      "start_date": "2024-09",
+      "end_date": "2026-08",
+      "status": "expected",
+      "expected_graduation": "2026-08"
+    },
+    {
+      "degree": "Master of Landscape Architecture (MLA)",
+      "institution": "University of Washington, Seattle, WA",
+      "start_date": "2022-09",
+      "end_date": "2024-06",
+      "status": "completed"
+    },
+    {
+      "degree": "Bachelor of Agronomy, Horticulture (Sino-Dutch Cooperation Program)",
+      "institution": "Shanghai Normal University",
+      "start_date": "2017-09",
+      "end_date": "2021-06",
+      "status": "completed"
+    }
+  ],
+  "skills": {
+    "design_and_research": ["Figma", "Prototyping", "Wireframing", "High-Fidelity Design", "User Interviews", "Personas", "User Journey Mapping", "Qualitative Research", "Usability Testing", "A/B Testing", "Competitive Analysis", "Card Sorting", "Storyboarding", "Data Visualization"],
+    "ai_assisted_prototyping": ["Claude Code", "Cursor"],
+    "development_and_tools": ["Java", "HTML", "CSS", "Node.js", "React", "AutoCAD", "Adobe Photoshop", "Adobe InDesign", "Adobe Illustrator", "SketchUp", "Rhino", "V-Ray"]
+  }
+}
