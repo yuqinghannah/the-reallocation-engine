@@ -9,8 +9,7 @@ assignment via chat.
 `make_chart.py`), drafted the structure and first-pass text of all seven
 validation report sections (GIGO_GATE.md, BIAS_AUDIT.md, EXPLAINABILITY.md,
 CAUSAL_REASONING.md, ADVERSARIAL_ROBUSTNESS.md, DELEGATION_HARDSTOP.md,
-WORKED_RUN.md), and walked me step-by-step through terminal/Git commands
-(I have no coding background).
+WORKED_RUN.md), and walked me step-by-step through terminal/Git commands.
 
 **How used:** I ran every script myself on my own machine against the real
 CSV data and pasted the actual terminal output back into the conversation.
