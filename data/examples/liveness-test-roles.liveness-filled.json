@@ -1,0 +1,83 @@
+[
+  {
+    "role_id": "hagerty-product-designer",
+    "company": "Hagerty",
+    "title": "Product Designer",
+    "job_url": "https://hagerty.wd5.myworkdayjobs.com/hagerty/job/United-States/Product-Designer_R5329",
+    "sponsorship": {
+      "p": 0.5,
+      "tier": "Unknown",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.7,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 0,
+      "source": "record",
+      "checked_url": "https://hagerty.wd5.myworkdayjobs.com/hagerty/job/United-States/Product-Designer_R5329",
+      "checked_result": "expired",
+      "checked_reason": "insufficient content — likely nav/footer only",
+      "checked_at": "2026-08-15T02:58:11.587Z"
+    }
+  },
+  {
+    "role_id": "nerdio-designer",
+    "company": "Nerdio",
+    "title": "Product/UX Designer",
+    "job_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+    "sponsorship": {
+      "p": 0.5,
+      "tier": "Unknown",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.75,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record",
+      "checked_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+      "checked_result": "active",
+      "checked_reason": "visible apply control detected",
+      "checked_at": "2026-08-15T02:58:14.853Z"
+    }
+  },
+  {
+    "role_id": "clutch-designer-monthold",
+    "company": "Clutch",
+    "title": "Designer role (posted ~1 month ago)",
+    "job_url": "https://jobs.ashbyhq.com/withclutch/af27eba4-5a51-46f6-bc35-7ff25095cd84/application",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.8,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record",
+      "checked_url": "https://jobs.ashbyhq.com/withclutch/af27eba4-5a51-46f6-bc35-7ff25095cd84/application",
+      "checked_result": "active",
+      "checked_reason": "visible apply control detected",
+      "checked_at": "2026-08-15T02:58:17.251Z"
+    }
+  }
+]
