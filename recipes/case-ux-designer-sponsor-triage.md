@@ -1,9 +1,9 @@
 ---
-status: RUNNABLE-SAMPLE
-todos_open: 2
-last_gate: liveness
+status: RUNNABLE-LIVE
+todos_open: 1
+last_gate: funding_recency
 attestation: assignments/submissions/yuqinghannah/worked-run.md
-recipe_version: 0.2.0
+recipe_version: 0.3.0
 ---
 
 # ux-designer-sponsor-triage
@@ -12,9 +12,9 @@ recipe_version: 0.2.0
 For an F-1 UX/Product Designer on STEM OPT, evaluate and prioritize open
 Product Designer / UX Designer postings by (1) whether the hiring company has
 a *documented history of sponsoring designer-titled H-1B roles specifically*
-(not just any H-1B), (2) how recent and how large its last funding round was,
-and (3) whether the specific posting is still live — before spending
-application time on it.
+(not just any H-1B), (2) how recent its last funding round was, and (3)
+whether the specific posting is still live — before spending application
+time on it.
 
 Use this mode when: you have a shortlist of open Product/UX Designer roles
 and need to rank them by sponsorship probability before applying. Do not use
@@ -35,20 +35,26 @@ describes company patterns, not guarantees for a specific hire.
   (e.g. `['Senior UX Designer']`, `['Product Designer']`). This means design
   roles can be matched directly by title text, without needing a separate
   SOC-code mapping step.
-- `data/ats/portals.yml` — required config file for the ATS scan (copied
-  from `data/ats/portals.example.yml`; not present in a fresh clone — see
-  Worked Run).
-- `npm run ats:scan -- --dry-run` — ATS provider detection / scan, no writes.
-- `npm run ats:liveness -- <job-url>` — posting liveness check (GATE).
+- `npm run ats:liveness -- <job-url>` — posting liveness check (GATE),
+  called by `scripts/gates/fill-liveness-gate.mjs` (below).
+- **`scripts/gates/fill-liveness-gate.mjs`** — NEW this revision. Runs
+  Playwright liveness checks against real job URLs and writes a real
+  `liveness.factor` (1.0 active / 0.0 expired / 0.5 uncertain) back onto each
+  role, replacing the hand-typed `factor: 1.0` every prior roles.json in this
+  repo carried. `node scripts/gates/fill-liveness-gate.mjs <roles.json>
+  [--out out.json]`.
+- **`scripts/gates/fill-funding-recency-gate.mjs`** — NEW this revision.
+  Looks up each role's company in `SEC_DOL_H1b_data_mapped.csv` and computes
+  a real `funding_recency.factor` from `latest_funding_date` (thresholds
+  below are [VERIFY] — an authorial judgment call, not a number pinned
+  anywhere in the book or repo docs). `node
+  scripts/gates/fill-funding-recency-gate.mjs <roles.json> <sec-csv> [--out
+  out.json]`.
+- `scripts/score/role-scorer.mjs` — now reads `funding_recency.factor` as a
+  third gate multiplier (previously only liveness and timeline gated the
+  composite).
 
 ## Proposed Additions (typed, not yet built)
-- [TODO: SCRIPT] `scripts/designer-sponsor-filter.mjs` — a small script that
-  greps `top_job_titles_sponsored` for design-adjacent title strings
-  ("Designer", "UX", "Product Design") and outputs a filtered CSV. Currently
-  done manually with `Select-String` (PowerShell) during this Worked Run —
-  works, but isn't part of the repo's tested script set yet.
-  Justification: without this, every run requires hand-typing a regex
-  against a 6.5MB CSV, which doesn't scale past a one-off check.
 - [TODO: DATA] Design-specific SOC code cross-reference — the underlying
   DOL data likely carries SOC codes internally, but they are not exposed as
   a column in `SEC_DOL_H1b_data_mapped.csv`. Without them, this mode can only
@@ -58,37 +64,55 @@ describes company patterns, not guarantees for a specific hire.
   Designer" — title-string matching under-counts real matches.
 
 ## Phase Gates
-1. **Liveness gate** — `npm run ats:liveness -- <job-url>` must return
-   "live." A dead posting is dropped regardless of every other score. Not
-   yet run against a real URL in this submission (see "Did not test" in
-   Attestation).
+1. **Liveness gate** — now REAL: `scripts/gates/fill-liveness-gate.mjs`
+   actually visits each job URL with Playwright and writes back active
+   (factor=1.0) / expired (factor=0.0) / uncertain (factor=0.5). Tested
+   against 3 real job postings (see Worked Run) — one (Hagerty) turned out
+   to be genuinely expired despite my prior assumption it was still live;
+   one I assumed was expired ("posted ~1 month ago") turned out active. A
+   dead posting zeroes the composite regardless of every other score,
+   verified directly (composite = 0.000, see arithmetic trace).
 2. **Title-match gate** — the company's `top_job_titles_sponsored` field
    must contain a design-adjacent string. Zero title matches doesn't mean
    "will never sponsor a designer," but it moves the company out of the
    top-confidence tier.
-3. **Funding recency gate** — `latest_funding_date` should be within a
-   reasonable runway window (not yet formally defined; currently eyeballed
-   during manual review, not scripted).
+3. **Funding recency gate** — now REAL: `scripts/gates/fill-funding-recency-gate.mjs`
+   reads `latest_funding_date` and applies a fixed threshold ([VERIFY] —
+   not an established standard): ≤18mo → factor 1.0 (fresh); 18–30mo →
+   factor 0.5 (aging); >30mo → factor 0.05 (stale, gate closes); missing or
+   company not in the SEC dataset → factor 0.5 ("unknown," never guessed as
+   fresh or stale). Tested against a company with a 117-month-old funding
+   record (factor=0.05) whose sponsorship/fit votes were deliberately set
+   high (0.9/0.85) — the composite still dropped to 0.024, confirming the
+   gate closes the door regardless of vote strength.
 
 ## What This Mode Can and Cannot Verify
 **Can verify:** whether a company's H-1B filing history includes a
 design-adjacent job title string, verbatim, from `top_job_titles_sponsored`;
-the company's most recent funding stage, amount, and date; via ats:scan,
-whether the company's careers page uses a detectable ATS provider.
+the company's most recent funding stage and date; whether a specific job
+posting URL is currently live, expired, or uncertain (via a real Playwright
+visit, not an assumption).
 
 **Cannot verify:** whether the company will sponsor *this specific* design
 opening (past sponsorship of one title ≠ future sponsorship of a similarly
 named but different role); whether a job title that doesn't literally match
 a design-adjacent string ("Interaction Designer," "Design Technologist,"
 "Experience Designer") was in fact a design role — title-string matching has
-no synonym handling; whether a live posting on the ATS is actually still
-accepting applications (liveness ≠ actively reviewed).
+no synonym handling; whether a live posting is actually still accepting
+applications versus merely not yet taken down; the funding-recency thresholds
+(≤18/18–30/>30 months) are an authorial judgment call, not an industry
+standard, and may not reflect the actual runway of any specific company;
+companies not present in the SEC Form D dataset (confirmed during testing:
+none of Hagerty, Nerdio, or Clutch — all real, currently-hiring companies —
+appear in this ~6,000-row dataset) get an "unknown" funding-recency factor,
+which this mode treats as neutral (0.5), not as evidence of either freshness
+or staleness.
 
 ## Output Contract
 - Agent log: `logs/ux-designer-sponsor-triage-run.json` — one record per
   company checked: `company_name`, `matched_title_strings`,
   `latest_funding_stage`, `latest_funding_date`, `approval_rate`,
-  `ats_provider_detected`, `liveness_result`.
+  `liveness_result`, `funding_recency_factor`.
 - Human report: Markdown table — one row per company, tier (Top / Watch /
   Drop) with a one-line reason.
 - These are never the same file (P5).
@@ -98,7 +122,9 @@ accepting applications (liveness ≠ actively reviewed).
   mode reports "no title data," never assumes zero history means "won't
   sponsor."
 - If `ats:liveness` cannot reach a URL (network error vs. dead posting), the
-  mode reports "unknown," never guesses.
+  mode reports "uncertain" (factor=0.5), never guesses active or expired.
+- If a company is not found in the SEC/DOL dataset, funding recency is
+  reported "unknown" (factor=0.5), never assumed fresh or stale.
 
 ## RUN_LOG Template
 ```

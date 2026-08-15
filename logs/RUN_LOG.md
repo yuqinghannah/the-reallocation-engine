@@ -168,3 +168,32 @@ private emails, or sensitive application notes.
   "Interaction Designer" etc., over-includes adjacent titles like "Senior
   Designer, Motion Graphics"); ats:liveness and score commands not yet run;
   portals.yml onboarding step undocumented in repo.
+  ### 2026-08-15
+- Mode: ux-designer-sponsor-triage v0.3.0 (revision after TA feedback)
+- Inputs: 3 real job-posting URLs (Hagerty/Nerdio/Clutch, from LinkedIn
+  "Apply on company website" redirects) for the liveness gate; 3 companies
+  from SEC_DOL_H1b_data_mapped.csv with known funding ages (12mo/30mo/117mo)
+  for the funding-recency gate, since none of the 3 liveness-test companies
+  appear in that dataset.
+- Commands run:
+  - `node scripts/gates/fill-liveness-gate.mjs data/examples/liveness-test-roles.json`
+  - `node scripts/score/role-scorer.mjs data/examples/liveness-test-roles.liveness-filled.json --out-dir data/examples --md data/examples/liveness-gate-test-report.md`
+  - `node scripts/gates/fill-funding-recency-gate.mjs data/examples/funding-test-roles.json data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv`
+  - `node scripts/gates/fill-liveness-gate.mjs data/examples/combined-gates-test-roles.json --out data/examples/combined-gates-test-roles.step1.json`
+  - `node scripts/gates/fill-funding-recency-gate.mjs data/examples/combined-gates-test-roles.step1.json data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv --out data/examples/combined-gates-test-roles.final.json`
+  - `node scripts/score/role-scorer.mjs data/examples/combined-gates-test-roles.final.json --out-dir data/examples --md data/examples/combined-gates-test-report.md`
+- Result: liveness gate real-tested on 3 URLs (1 expired, 2 active; my own
+  intuition was wrong on 2/3). Funding-recency gate built and wired into
+  role-scorer.mjs as a third multiplying gate. Combined test: a role with
+  sponsorship=0.9/fit=0.85 (high votes) was reduced to composite=0.000 by a
+  closed liveness gate, and a separate role with the same high votes was
+  reduced to composite=0.024 by a closed funding-recency gate — both prove
+  gates zero the composite regardless of vote strength.
+- Open issues: 2 real bugs found and fixed during this run — a CSV parser
+  that mis-split quoted fields containing embedded commas (garbled dates for
+  2/3 funding test companies until fixed), and a ReferenceError in
+  role-scorer.mjs from accidentally deleting the composite-calculation lines
+  while adding the funding gate. Funding-recency thresholds (18mo/30mo) are
+  an authorial judgment call, not validated against a larger sample. 68
+  Designer-title matches from the original run still not row-audited for
+  false positives.
