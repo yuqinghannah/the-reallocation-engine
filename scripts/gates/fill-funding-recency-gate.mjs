@@ -37,12 +37,36 @@ function fundingFactor(dateStr) {
   return { factor: 0.05, note: `${months}mo old — stale (> ${STALE_MONTHS}mo threshold) — gate closes` };
 }
 
-// tiny CSV parser: good enough for this repo's simple comma-separated columns
+// CSV parser that correctly handles quoted fields containing embedded commas
+// (e.g. executive_officers: "Brandon Brunet, Edward Livingston, ...").
+// The naive split(',') version silently misaligned every column after the
+// first quoted comma — a real bug found while running this on real data
+// (see WORKED_RUN break-attempt notes).
+function parseCsvLine(line) {
+  const cells = [];
+  let cur = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuotes) {
+      if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+      else if (ch === '"') { inQuotes = false; }
+      else { cur += ch; }
+    } else {
+      if (ch === '"') inQuotes = true;
+      else if (ch === ',') { cells.push(cur); cur = ''; }
+      else { cur += ch; }
+    }
+  }
+  cells.push(cur);
+  return cells;
+}
+
 function parseCsv(text) {
   const [headerLine, ...lines] = text.trim().split(/\r?\n/);
-  const headers = headerLine.split(',');
+  const headers = parseCsvLine(headerLine);
   return lines.map((line) => {
-    const cells = line.split(',');
+    const cells = parseCsvLine(line);
     const row = {};
     headers.forEach((h, i) => { row[h] = cells[i] ?? ''; });
     return row;

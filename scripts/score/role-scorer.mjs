@@ -82,10 +82,13 @@ function scoreRole(role, weights, needsSponsor) {
   // gates (multipliers)
   const liveness = num(role.liveness?.factor) ?? 1;
   const timeline = num(role.timeline?.factor) ?? 1;
+  const fundingRecency = num(role.funding_recency?.factor) ?? 1;
   const gates = [
     { key: 'liveness', factor: liveness, source: role.liveness?.source || SRC.record },
     { key: 'timeline', factor: timeline, source: role.timeline?.source || SRC.input },
+    { key: 'funding_recency', factor: fundingRecency, source: role.funding_recency?.source || SRC.record },
   ];
+
   const gateProduct = gates.reduce((s, g) => s * g.factor, 1);
   const composite = voteSum * gateProduct;
 

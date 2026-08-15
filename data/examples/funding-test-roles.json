@@ -1,0 +1,29 @@
+[
+  {
+    "role_id": "funding-fresh",
+    "company": "10000 INC",
+    "title": "Test role — fresh funding",
+    "sponsorship": { "p": 0.6, "tier": "Likely", "source": "record" },
+    "fit": { "p": 0.7, "source": "model-judgment" },
+    "liveness": { "factor": 1.0, "source": "record" },
+    "timeline": { "factor": 0.85, "source": "your-input" }
+  },
+  {
+    "role_id": "funding-aging",
+    "company": "1 TRUE HEALTH CARE MANAGEMENT INC",
+    "title": "Test role — aging funding",
+    "sponsorship": { "p": 0.6, "tier": "Likely", "source": "record" },
+    "fit": { "p": 0.7, "source": "model-judgment" },
+    "liveness": { "factor": 1.0, "source": "record" },
+    "timeline": { "factor": 0.85, "source": "your-input" }
+  },
+  {
+    "role_id": "funding-stale",
+    "company": "$AVY INC",
+    "title": "Test role — stale funding (high sponsorship+fit to prove the gate zeroes it)",
+    "sponsorship": { "p": 0.9, "tier": "Proven", "source": "record" },
+    "fit": { "p": 0.85, "source": "model-judgment" },
+    "liveness": { "factor": 1.0, "source": "record" },
+    "timeline": { "factor": 0.85, "source": "your-input" }
+  }
+]

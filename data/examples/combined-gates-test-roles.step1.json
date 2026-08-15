@@ -1,0 +1,83 @@
+[
+  {
+    "role_id": "both-gates-healthy",
+    "company": "10000 INC",
+    "title": "Both liveness and funding fresh — should Apply or Consider",
+    "job_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+    "sponsorship": {
+      "p": 0.6,
+      "tier": "Likely",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.7,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record",
+      "checked_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+      "checked_result": "active",
+      "checked_reason": "visible apply control detected",
+      "checked_at": "2026-08-15T21:12:52.155Z"
+    }
+  },
+  {
+    "role_id": "liveness-fails-funding-fine",
+    "company": "10000 INC",
+    "title": "High scores, but posting is dead — liveness gate should zero it",
+    "job_url": "https://hagerty.wd5.myworkdayjobs.com/hagerty/job/United-States/Product-Designer_R5329",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 0,
+      "source": "record",
+      "checked_url": "https://hagerty.wd5.myworkdayjobs.com/hagerty/job/United-States/Product-Designer_R5329",
+      "checked_result": "expired",
+      "checked_reason": "insufficient content — likely nav/footer only",
+      "checked_at": "2026-08-15T21:12:55.131Z"
+    }
+  },
+  {
+    "role_id": "funding-fails-liveness-fine",
+    "company": "$AVY INC",
+    "title": "High scores, but funding is 9+ years stale — funding gate should zero it",
+    "job_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "timeline": {
+      "factor": 0.85,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record",
+      "checked_url": "https://ats.rippling.com/nerdio-careers/jobs/5c016485-0913-41fc-8657-291f06d11185",
+      "checked_result": "active",
+      "checked_reason": "visible apply control detected",
+      "checked_at": "2026-08-15T21:12:59.689Z"
+    }
+  }
+]

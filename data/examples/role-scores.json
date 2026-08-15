@@ -20,21 +20,21 @@
   "profile_needs_sponsorship": true,
   "roles": [
     {
-      "role_id": "hagerty-product-designer",
-      "company": "Hagerty",
-      "title": "Product Designer",
-      "composite": 0,
-      "recommendation": "Skip",
-      "machine_recommendation": "Skip",
-      "reason": "gated: liveness ≈ 0.000 (a closed gate zeroes the composite regardless of votes)",
+      "role_id": "both-gates-healthy",
+      "company": "10000 INC",
+      "title": "Both liveness and funding fresh — should Apply or Consider",
+      "composite": 0.357,
+      "recommendation": "Consider",
+      "machine_recommendation": "Consider",
+      "reason": "above threshold (0.357) but one soft spot: sponsorship tier \"Likely\"",
       "override": null,
       "trace": {
         "votes": [
           {
             "factor": "sponsorship",
-            "value": 0.5,
+            "value": 0.6,
             "weight": 0.35,
-            "contribution": 0.175,
+            "contribution": 0.21,
             "source": "record"
           },
           {
@@ -45,50 +45,7 @@
             "source": "model-judgment"
           }
         ],
-        "vote_sum": 0.385,
-        "gates": [
-          {
-            "factor": "liveness",
-            "multiplier": 0,
-            "source": "record"
-          },
-          {
-            "factor": "timeline",
-            "multiplier": 0.85,
-            "source": "your-input"
-          }
-        ],
-        "gate_product": 0,
-        "arithmetic": "(0.5·0.35 + 0.7·0.3) × 0 × 0.85 = 0.000"
-      }
-    },
-    {
-      "role_id": "nerdio-designer",
-      "company": "Nerdio",
-      "title": "Product/UX Designer",
-      "composite": 0.34,
-      "recommendation": "Consider",
-      "machine_recommendation": "Consider",
-      "reason": "above threshold (0.340) but one soft spot: sponsorship tier \"Unknown\"",
-      "override": null,
-      "trace": {
-        "votes": [
-          {
-            "factor": "sponsorship",
-            "value": 0.5,
-            "weight": 0.35,
-            "contribution": 0.175,
-            "source": "record"
-          },
-          {
-            "factor": "fit",
-            "value": 0.75,
-            "weight": 0.3,
-            "contribution": 0.225,
-            "source": "model-judgment"
-          }
-        ],
-        "vote_sum": 0.4,
+        "vote_sum": 0.42,
         "gates": [
           {
             "factor": "liveness",
@@ -99,20 +56,25 @@
             "factor": "timeline",
             "multiplier": 0.85,
             "source": "your-input"
+          },
+          {
+            "factor": "funding_recency",
+            "multiplier": 1,
+            "source": "record"
           }
         ],
         "gate_product": 0.85,
-        "arithmetic": "(0.5·0.35 + 0.75·0.3) × 1 × 0.85 = 0.340"
+        "arithmetic": "(0.6·0.35 + 0.7·0.3) × 1 × 0.85 × 1 = 0.357"
       }
     },
     {
-      "role_id": "clutch-designer-monthold",
-      "company": "Clutch",
-      "title": "Designer role (posted ~1 month ago)",
-      "composite": 0.4717,
-      "recommendation": "Apply",
-      "machine_recommendation": "Apply",
-      "reason": "composite 0.472 ≥ 0.3, gates healthy",
+      "role_id": "liveness-fails-funding-fine",
+      "company": "10000 INC",
+      "title": "High scores, but posting is dead — liveness gate should zero it",
+      "composite": 0,
+      "recommendation": "Skip",
+      "machine_recommendation": "Skip",
+      "reason": "gated: liveness ≈ 0.000 (a closed gate zeroes the composite regardless of votes)",
       "override": null,
       "trace": {
         "votes": [
@@ -125,13 +87,61 @@
           },
           {
             "factor": "fit",
-            "value": 0.8,
+            "value": 0.85,
             "weight": 0.3,
-            "contribution": 0.24,
+            "contribution": 0.255,
             "source": "model-judgment"
           }
         ],
-        "vote_sum": 0.555,
+        "vote_sum": 0.57,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 0,
+            "source": "record"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.85,
+            "source": "your-input"
+          },
+          {
+            "factor": "funding_recency",
+            "multiplier": 1,
+            "source": "record"
+          }
+        ],
+        "gate_product": 0,
+        "arithmetic": "(0.9·0.35 + 0.85·0.3) × 0 × 0.85 × 1 = 0.000"
+      }
+    },
+    {
+      "role_id": "funding-fails-liveness-fine",
+      "company": "$AVY INC",
+      "title": "High scores, but funding is 9+ years stale — funding gate should zero it",
+      "composite": 0.0242,
+      "recommendation": "Skip",
+      "machine_recommendation": "Skip",
+      "reason": "gated: funding_recency ≈ 0.050 (a closed gate zeroes the composite regardless of votes)",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.9,
+            "weight": 0.35,
+            "contribution": 0.315,
+            "source": "record"
+          },
+          {
+            "factor": "fit",
+            "value": 0.85,
+            "weight": 0.3,
+            "contribution": 0.255,
+            "source": "model-judgment"
+          }
+        ],
+        "vote_sum": 0.57,
         "gates": [
           {
             "factor": "liveness",
@@ -142,10 +152,15 @@
             "factor": "timeline",
             "multiplier": 0.85,
             "source": "your-input"
+          },
+          {
+            "factor": "funding_recency",
+            "multiplier": 0.05,
+            "source": "record"
           }
         ],
-        "gate_product": 0.85,
-        "arithmetic": "(0.9·0.35 + 0.8·0.3) × 1 × 0.85 = 0.472"
+        "gate_product": 0.0425,
+        "arithmetic": "(0.9·0.35 + 0.85·0.3) × 1 × 0.85 × 0.05 = 0.024"
       }
     }
   ]
