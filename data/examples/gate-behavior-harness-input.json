@@ -1,0 +1,106 @@
+[
+  {
+    "role_id": "harness-all-gates-open",
+    "company": "SYNTHETIC-TEST-CO-A",
+    "title": "[harness] control case — all gates open",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record"
+    },
+    "timeline": {
+      "factor": 1,
+      "source": "your-input"
+    },
+    "funding_recency": {
+      "factor": 1,
+      "source": "record"
+    }
+  },
+  {
+    "role_id": "harness-liveness-closed",
+    "company": "SYNTHETIC-TEST-CO-B",
+    "title": "[harness] liveness gate closed, all else high",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "liveness": {
+      "factor": 0,
+      "source": "record"
+    },
+    "timeline": {
+      "factor": 1,
+      "source": "your-input"
+    },
+    "funding_recency": {
+      "factor": 1,
+      "source": "record"
+    }
+  },
+  {
+    "role_id": "harness-timeline-closed",
+    "company": "SYNTHETIC-TEST-CO-C",
+    "title": "[harness] timeline gate closed, all else high",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record"
+    },
+    "timeline": {
+      "factor": 0,
+      "source": "your-input"
+    },
+    "funding_recency": {
+      "factor": 1,
+      "source": "record"
+    }
+  },
+  {
+    "role_id": "harness-funding-closed",
+    "company": "SYNTHETIC-TEST-CO-D",
+    "title": "[harness] funding_recency gate closed, all else high",
+    "sponsorship": {
+      "p": 0.9,
+      "tier": "Proven",
+      "source": "record"
+    },
+    "fit": {
+      "p": 0.85,
+      "source": "model-judgment"
+    },
+    "liveness": {
+      "factor": 1,
+      "source": "record"
+    },
+    "timeline": {
+      "factor": 1,
+      "source": "your-input"
+    },
+    "funding_recency": {
+      "factor": 0.05,
+      "source": "record"
+    }
+  }
+]
